@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="IMG-20250715-WA0069.jpg" type="image/x-icon">
+    <title>IBMI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7rem;
+        }
+
+        .header-container img {
+            width: 10%;
+            height: auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        nav {
+            background-color: #dab211;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #000;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #fff;
+            color: #dab211;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: white;
+            margin: 2rem auto;
+            border-radius: 10px;
+            max-width: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+        }
+
+        .welcome h2 {
+            color: #000000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .services, .events {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+        }
+
+        .services h2, .events h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .services ul, .events ul {
+            list-style: none;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .services li, .events li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .services li:last-child, .events li:last-child {
+            border-bottom: none;
+        }
+
+        .welcome-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .welcome-img-container {
+            flex: 1 1 40%;
+            min-width: 300px;
+        }
+
+        .welcome-img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .welcome-text {
+            flex: 1 1 40%;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .welcome-text h2 {
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text p {
+            color: #000000;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #000;
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+            color: #eee;
+        }
+
+        #verse {
+            font-style: italic;
+            margin-top: 1rem;
+            cursor: pointer;
+            color: #444;
+            transition: color 0.3s;
+        }
+
+        #verse:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .welcome, .services, .events {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+        header h1 {
+            font-size: 1.5rem; /* Reduz o tamanho do título do header */
+        }
+
+        .header-container {
+            flex-direction: column; /* Empilha logo e título verticalmente */
+            gap: 1rem;
+        }
+
+        .header-container img {
+            width: 30%; /* Ajusta o tamanho do logo */
+        }
+
+        nav ul {
+            flex-direction: column; /* Empilha os links do menu verticalmente */
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            font-size: 1rem; /* Reduz o tamanho da fonte dos links */
+            padding: 0.2rem 0.3rem;
+        }
+
+        .welcome {
+            margin: 1rem;
+            padding: 1rem;
+            max-width: 100%; /* Ocupa toda a largura da tela */
+        }
+
+        .welcome-content {
+            flex-direction: column; /* Empilha imagem e texto verticalmente */
+            gap: 1rem;
+        }
+
+        .welcome-img-container, .welcome-text {
+            flex: 1 1 100%; /* Ambos ocupam 100% da largura */
+        }
+
+        .welcome-img {
+            border-radius: 15px 10px; /* Reduz os cantos arredondados */
+        }
+
+        .services, .events, .ministerios, .programacao {
+            margin: 1rem;
+            padding: 1rem;
+            max-width: 100%;
+        }
+
+        .cartoes {
+            grid-template-columns: 1fr; /* Exibe os cartões em uma única coluna */
+        }
+
+        .cartao {
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            padding: 1rem;
+        }
+
+        #verse {
+            font-size: 0.9rem; /* Reduz o tamanho do versículo */
+        }
+    }
+
+        .ministerios {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .ministerios h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #000;
+            font-size: 1.8rem;
+        }
+
+        .cartao p {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .cartao {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            opacity: 0;
+        }
+
+        .cartao h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .cartao:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .programacao {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .programacao h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #000;
+            font-size: 1.8rem;
+        }
+
+        .programacao .cartoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .programacao .cartao {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            opacity: 0;
+        }
+
+        .programacao .cartao h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .programacao .cartao:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        hr {
+            border: 4px solid #dab211;
+            height: 3%;
+            background-color: #dab211;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo_ibmi_buique.png" alt="Logo da IBMI">
+            <h1>Igreja Batista Missionária Independente</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home"><strong>Início</strong></a></li>
+            <li><a href="#services"><strong>Culto</strong></a></li>
+            <li><a href="#ministerios"><strong>Ministérios</strong></a></li>
+            <li><a href="#programacao"><strong>Programação</strong></a></li>
+            <li><a href="#events"><strong>Eventos</strong></a></li>
+            <li><a href="#contact"><strong>Contato</strong></a></li>
+        </ul>
+    </nav>
+
+    <section class="welcome" id="home">
+        <div class="welcome-content">
+            <div class="welcome-img-container">
+                <img src="sobrenos.jpg" class="welcome-img" alt="Sobre a IBMI">
+            </div>
+            <div class="welcome-text">
+                <h2>Bem-vindo à IBMI!</h2>
+                <br>
+                <p>Junte-se a nós para compartilhar a palavra de Deus e crescer em fé. Nossa comunidade está de braços abertos para receber você e sua família!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Horários dos Cultos</h2>
+        <ul>
+            <li>Domingo: Evangelismo e Culto de Celebração - 09h e 19h</li>
+            <li>Terça-feira: Culto da Família - 19h</li>
+            <li>Quarta-feira: Encontro de Mulheres - 19h</li>
+            <li>Sábado: Encontro de Jovens - 19h</li>
+        </ul>
+    </section>
+
+    <section class="ministerios" id="ministerios">
+    <h2>Ministérios</h2>
+    <div class="ministries-container">
+        <button class="nav-btn prev">&lt;</button>
+        <div class="ministries-slider">
+            <div class="ministry-card">
+                <h3>Ministério de Louvor</h3>
+                <p>Responsável por conduzir os momentos de adoração durante os cultos.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Ministério Infantil</h3>
+                <p>Cuida das crianças durante os cultos, proporcionando um ambiente seguro e divertido.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Diáconos</h3>
+                <p>Servem a igreja em diversas funções, apoiando o pastor e a comunidade.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Obreiros</h3>
+                <p>Auxiliam nas atividades da igreja, participando ativamente dos cultos e eventos.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Ministério de Mulheres</h3>
+                <p>Promove encontros e atividades voltadas para o fortalecimento da fé feminina.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Ministério de Jovens</h3>
+                <p>Focado em jovens, promovendo encontros e atividades para crescimento espiritual.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Ministério de Evangelismo</h3>
+                <p>Responsável por levar a palavra de Deus à comunidade, organizando eventos evangelísticos.</p>
+            </div>
+            <div class="ministry-card">
+                <h3>Ministério de Assistência Social</h3>
+                <p>Oferece apoio a pessoas necessitadas, promovendo ações sociais e de caridade.</p>
+            </div>
+        </div>
+        <button class="nav-btn next">&gt;</button>
+    </div>
+</section>
+        <style>
+        .ministerios {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: #f4f4f4;
+        }
+
+        .ministerios h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #000;
+            font-size: 1.8rem;
+        }
+
+        .ministries-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .ministries-slider {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .ministry-card {
+            min-width: 250px;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0 0.5rem;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .ministry-card h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .ministry-card p {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .nav-btn {
+            background-color: #ffffff;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #b0c4de;
+        }
+
+        .ministry-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script>
+        const slider = document.querySelector('.ministries-slider');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollLeft += 260; // Largura aproximada de cada cartão + margem
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollLeft -= 260;
+        });
+    </script>
+
+    <section class="programacao" id="programacao">
+        <h2>Programação da semana</h2>
+        <div class="cartoes">
+            <div class="cartao">
+                <h3>Domingo</h3>
+                <p>09h: Evangelismo<br>19h: Culto de Celebração</p>
+            </div>
+            <div class="cartao">
+                <h3>Terça-feira</h3>
+                <p>19h: Culto da Família</p>
+            </div>
+            <div class="cartao">
+                <h3>Quarta-feira</h3>
+                <p>19h: Encontro de Mulheres</p>
+            </div>
+            <div class="cartao">
+                <h3>Sábado</h3>
+                <p>19h: Encontro de Jovens</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="events" id="events">
+        <h2>Próximos Eventos</h2>
+        <ul>
+            <li>Décimo quinto congresso feminino: 23 de agosto de 2025</li>
+            <li>Imerssão jovem: todos os sábados de Agosto</li>
+            <li>Retiro ABA PAI: Sem data prevista para novembro</li>
+        </ul>
+    </section>
+    <hr>
+    <footer id="contact">
+        <p>Endereço: Rua Graciliano Ramos, 294, Buíque, Pernambuco, Brasil</p>
+        <a href="https://www.instagram.com/ibmibuique/"> <img src="instagram (1).png" class="imagem"></a>
+        <p id="verse">"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles." - Mateus 18:20</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script>
+        // Registrar o plugin ScrollTo no GSAP
+        gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+
+        // Animação para a seção de boas-vindas
+        gsap.fromTo(".welcome", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+        );
+
+        // Animação para os cartões de ministérios e programação
+        gsap.utils.toArray(".cartao").forEach((cartao, index) => {
+            gsap.fromTo(cartao, 
+                { opacity: 0, y: 30 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.6, 
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: cartao,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none none"
+                    },
+                    delay: index * 0.1
+                }
+            );
+
+            // Animação de hover nos cartões
+            cartao.addEventListener("mouseenter", () => {
+                gsap.to(cartao, { 
+                    scale: 1.05, 
+                    duration: 0.3, 
+                    ease: "power2.out" 
+                });
+            });
+            cartao.addEventListener("mouseleave", () => {
+                gsap.to(cartao, { 
+                    scale: 1, 
+                    duration: 0.3, 
+                    ease: "power2.out" 
+                });
+            });
+        });
+
+        // Animação suave para navegação
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, // Ajuste para o menu fixo
+                        behavior: 'smooth'
+                    });
+                    // Opcional: usar GSAP para rolagem suave
+                    gsap.to(window, {
+                        scrollTo: { y: targetElement, offsetY: 70 },
+                        duration: 1,
+                        ease: "power2.out"
+                    });
+                } else {
+                    console.warn(`Elemento com ID ${targetId} não encontrado.`);
+                }
+            });
+        });
+
+        // Animação existente para o versículo
+        const verses = [
+            '"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles." - Mateus 18:20',
+            '"Ame o seu próximo como a si mesmo." - Mateus 22:39',
+            '"Eu sou o caminho, a verdade e a vida." - João 14:6',
+            '"O Senhor é o meu pastor; de nada terei falta." - Salmos 23:1'
+        ];
+
+        const verseElement = document.getElementById('verse');
+        let currentVerseIndex = 0;
+
+        verseElement.addEventListener('click', () => {
+            currentVerseIndex = (currentVerseIndex + 1) % verses.length;
+            gsap.to(verseElement, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                    verseElement.textContent = verses[currentVerseIndex];
+                    gsap.to(verseElement, { opacity: 1, duration: 0.3 });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
